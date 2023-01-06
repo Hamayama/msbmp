@@ -11,6 +11,9 @@
 ;; load
 (define img1 (load-ms-bitmap-file file1))
 
+(print "width  = " (~ img1 'width))
+(print "height = " (~ img1 'height))
+
 ;; pixel data   R   G   B   A
 (define data1 '(255 255 255 0
                 255 0   0   0
