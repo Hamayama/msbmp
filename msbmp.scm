@@ -9,8 +9,8 @@
 ;;   ファイルは、24 bit カラーで無圧縮のもののみ読み書き可能です。
 ;;
 (define-module msbmp
-  (use gauche.collection)
-  (use binary.pack)
+  (use gauche.collection) ; for size-of
+  (use binary.pack)       ; for pack unpack
   (export
     <ms-bitmap-data>
     load-ms-bitmap-file
@@ -28,7 +28,7 @@
 
 ;; Windows のビットマップファイルの読み込み
 ;;   ・ファイルは、24 bit カラーで無圧縮のもののみ読み込み可能
-;;   ・透明色はオプション引数に '(R G B) のリストで指定する(各色は0-255の値)
+;;   ・透明色はオプション引数に '(R G B) というリストで指定する(各色は0-255の値)
 (define (load-ms-bitmap-file file :optional (trans-color #f))
   (define (err msg . rest)
     (apply errorf (format "bitmap file load error (file=~a)\n~a" file msg) rest))
